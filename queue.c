@@ -24,33 +24,12 @@ void free_queue(struct queue *queue)
 	free(queue);
 }
 
-void print_queue(struct queue *queue)
-{
-	for (int i = queue->tail; i != queue->head; i = (i+1)%queue->size)
-		printf("%2d ", queue->arr[i]->value);
-	printf("\n");
-}
-
 int enqueue(struct queue *queue, struct rbnode *node)
 {
-	if (full(queue)){
-		struct rbnode **arr = malloc(sizeof(struct rbnode *)*queue->size*2);
-		// print_queue(queue);
-		struct rbnode *tmp = dequeue(queue);
-		int i = 0;
-		while(tmp){
-			arr[i++] = tmp;
-			tmp = dequeue(queue);
-		}
-		free(queue->arr);
-		queue->arr = arr;
-		queue->size *= 2;
-		queue->tail = 0;
-		queue->head = i;
-	}
+	if (full(queue))
+		return -1;
 	queue->arr[queue->head] = node;
 	queue->head = (queue->head+1)%queue->size;
-	// print_queue(queue);
 	return 0;
 }
 
