@@ -1,2 +1,18 @@
 # rbtree
-This ia s left leaning red black tree implementation.
+这是一种左斜红黑树的实现。
+
+rbtree.c 是红黑树实现的关键代码。
+queue.c 是打印红黑树和判断红黑树所用到的队列。
+test.c 是测试代码。
+
+运行 make 可生成 test 测试程序，
+./test number
+number为红黑树节点的个数，默认为10
+程序先随机生成number个各不相同且最大值为number的数值放入数组中，
+然后依次把数组中的数插入到红黑树中并打印红黑树
+并判断是否是红黑树，如果不是输出错误信息并退出。
+然后再依次删除红黑树中的每个节点，
+并判断是否是红黑树，如果不是输出错误信息并退出。
+
+
+
