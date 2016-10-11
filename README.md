@@ -34,21 +34,33 @@ number为红黑树节点的个数，默认为10，
 ----------------------------------
 
 print the array
+
  8  3  1  2  7  6  5  9  4 10
 
 insert 8 into the tree
+
  8
+ 
   the tree is red blcak tree
+  
 
 insert 3 into the tree
+
   8
+  
 *3
+
   the tree is red blcak tree
+  
 
 insert 1 into the tree
+
   3
+  
  1 8
+ 
   the tree is red blcak tree
+  
 
 insert 2 into the tree
     3
