@@ -63,107 +63,193 @@ insert 1 into the tree
   
 
 insert 2 into the tree
+
     3
+    
   2   8
+  
 *1
+
   the tree is red blcak tree
+  
 
 insert 7 into the tree
+
     3
+    
   2   8
+  
 *1  *7
+
   the tree is red blcak tree
+  
 
 insert 6 into the tree
+
         7
+        
    *3       8
+   
   2   6
+  
 *1
+
   the tree is red blcak tree
 
 insert 5 into the tree
+
         7
+        
    *3       8
+   
   2   6
+  
 *1  *5
+
   the tree is red blcak tree
+  
 
 insert 9 into the tree
+
         7
+        
    *3       9
+   
   2   6  *8
+  
 *1  *5
+
   the tree is red blcak tree
+  
 
 insert 4 into the tree
+
         5
+        
     3       7
+    
   2   4   6   9
+  
 *1          *8
+
   the tree is red blcak tree
+  
 
 insert 10 into the tree
+
         5
+        
     3       9
+    
   2   4  *7   10
+  
 *1       6 8
+
   the tree is red blcak tree
+  
 
 delete 8 in the tree
+
         5
+        
     3       9
+    
   2   4   7   10
+  
 *1      *6
+
   the tree is red blcak tree
 
 delete 3 in the tree
+
         5
+        
     2       9
+    
   1   4   7   10
+  
         *6
+        
   the tree is red blcak tree
+  
 
 delete 1 in the tree
+
         9
+        
    *5       10
+   
   4   7
+  
 *2  *6
+
   the tree is red blcak tree
+  
 
 delete 2 in the tree
+
         9
+        
    *5       10
+   
   4   7
+  
     *6
+    
   the tree is red blcak tree
+  
 
 delete 7 in the tree
+
     9
+    
  *5   10
+ 
  4 6
+ 
   the tree is red blcak tree
+  
 
 delete 6 in the tree
+
     9
+    
   5   10
+  
 *4
+
   the tree is red blcak tree
+  
 
 delete 5 in the tree
+
   9
+  
  4 10
+ 
   the tree is red blcak tree
+  
 
 delete 9 in the tree
+
   10
+  
 *4
+
   the tree is red blcak tree
+  
 
 delete 4 in the tree
+
  10
+ 
   the tree is red blcak tree
+  
 
 delete 10 in the tree
+
 [ empty tree ]
+
 the tree is red blcak tree
+
 
