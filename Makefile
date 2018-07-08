@@ -7,6 +7,8 @@ APP := test
 OBJS := test.o rbtree.o queue.o
 
 all : $(APP)
+
+run : $(APP)
 	./$(APP)
 
 $(APP) : $(OBJS)
@@ -17,4 +19,4 @@ rbtree.o queue.o: queue.h
 
 .PHONY :
 clean:
-	-rm -f *.o *.exe
+	-rm -f *.o *.exe test

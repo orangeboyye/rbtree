@@ -11,6 +11,9 @@ test.c 是测试代码。
 
 运行 make 可生成 test 测试程序，
 
+运行 make run 可以生成测试程序并运行之，
+
+或者直接运行测试程序
 ./test number
 
 number为红黑树节点的个数，默认为10，

@@ -31,12 +31,12 @@ int main(int argc, char const *argv[])
 		printf("%2d ", arr[i]);
 	printf("\n");
 
-	struct rbnode *root = NULL;
+	struct rbroot root = { NULL };
 	for (int i = 0; i < count; ++i){
 		insert(&root, arr[i]);
 		printf("\ninsert %d into the tree\n", arr[i]);
-		print_rbtree(root);
-		if (is_rbtree(root)) {
+		print_rbtree(root.node);
+		if (is_rbtree(root.node)) {
 			printf("the tree is red blcak tree\n");
 		} else {
 			printf("the tree is NOT red blcak tree!!!\n");
@@ -48,8 +48,8 @@ int main(int argc, char const *argv[])
 		delete(&root, arr[i]);
 		printf("\n");
 		printf("delete %d in the tree\n", arr[i]);
-		print_rbtree(root);
-		if (is_rbtree(root)) {
+		print_rbtree(root.node);
+		if (is_rbtree(root.node)) {
 			printf("the tree is red blcak tree\n");
 		} else {
 			printf("the tree is NOT red blcak tree!!!\n");

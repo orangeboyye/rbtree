@@ -27,7 +27,7 @@ int depth(struct rbnode *root);
 
 int nodes_count(struct rbnode *root);
 
-void print_rbtree(struct rbnode * root);
+void print_rbtree(struct rbnode *root);
 
 int  is_rbtree(struct rbnode *root);
 
