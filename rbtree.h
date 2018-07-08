@@ -12,9 +12,14 @@ struct rbnode
 	struct rbnode *right;
 };
 
-int insert(struct rbnode **root, int value);
+struct rbroot
+{
+	struct rbnode * node;
+};
 
-int delete(struct rbnode **proot, int value);
+int insert(struct rbroot *root, int value);
+
+int delete(struct rbroot *root, int value);
 
 struct rbnode * find(struct rbnode *root, int value);
 
