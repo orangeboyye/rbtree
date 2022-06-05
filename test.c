@@ -3,7 +3,6 @@
 #include <time.h>
 #include "rbtree.h"
 
-#define COUNT 10
 
 int main(int argc, char const *argv[])
 {
@@ -11,7 +10,7 @@ int main(int argc, char const *argv[])
 	printf("----------------------------------\n");
 	printf("\n");
 
-	int count = COUNT;
+	int count = 10;
 	if (argc > 1)
 		count = atoi(argv[1]);
 	if (count < 1)

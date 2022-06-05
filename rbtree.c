@@ -7,10 +7,10 @@
 static void insert_fix(struct rbroot *root, struct rbnode *node);
 static void delete_fix(struct rbroot *root, struct rbnode *node);
 
-int power(int di, int ex)
+int power(int di, int exp)
 {
 	int sum = 1;
-	for(int i = 0; i < ex; i++)
+	for(int i = 0; i < exp; i++)
 		sum *= di;
 	return sum;
 }
