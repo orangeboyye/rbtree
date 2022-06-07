@@ -14,21 +14,16 @@ struct rbnode
 
 struct rbroot
 {
-	struct rbnode * node;
+	struct rbnode *root;
+	int size;
+	int depth;
 };
+
 
 int insert(struct rbroot *root, int value);
 
 int delete(struct rbroot *root, int value);
 
-struct rbnode * find(struct rbnode *root, int value);
-
-int depth(struct rbnode *root);
-
-int nodes_count(struct rbnode *root);
-
-void print_rbtree(struct rbnode *root);
-
-int  is_rbtree(struct rbnode *root);
+struct rbnode * find(struct rbroot *root, int value);
 
 #endif // RBTREE_H_

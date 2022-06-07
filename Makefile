@@ -4,7 +4,7 @@ CFLAGS += -std=c99 -Wall -g -pg
 LDFLAGS += -pg
 
 APP := test
-OBJS := test.o rbtree.o queue.o
+OBJS := test.o rbutils.o rbtree.o queue.o
 
 all : $(APP)
 
@@ -13,9 +13,10 @@ run : $(APP)
 
 $(APP) : $(OBJS)
 
-$(OBJS) : rbtree.h
-
-rbtree.o queue.o: queue.h
+rbtree.o  : rbtree.h
+queue.o   : queue.h
+rbutils.o : rbutils.h rbtree.h queue.h
+test.o    : rbutils.h rbtree.h queue.h
 
 
 .PHONY :
