@@ -29,7 +29,7 @@ static int rb_depth(struct rbnode *root)
 void print_rbtree(struct rbtree *tree)
 {
 	if (tree == NULL || tree->root == NULL){
-		printf("[ empty tree ]\n");
+		printf("[ ]\n");
 		return;
 	}
 	struct rbnode *node = tree->root;

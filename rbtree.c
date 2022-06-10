@@ -39,6 +39,7 @@ int insert(struct rbtree *tree, int value)
 		tree->root = p;
 		p->color = BLACK;
 		tree->size++;
+		tree->depth++;
 		return 0;
 	}
 
@@ -121,7 +122,10 @@ void insert_fix(struct rbtree *tree, struct rbnode *node)
 			}
 		}
 	}
-	tree->root->color = BLACK;
+	if(tree->root->color == RED){
+		tree->root->color = BLACK;
+		tree->depth++;
+	}
 }
 
 void delete_fix(struct rbtree *tree, struct rbnode *node)
@@ -136,7 +140,7 @@ void delete_fix(struct rbtree *tree, struct rbnode *node)
 	while(self->parent){
 		parent = self->parent;
 		if(self == parent->left){
-			// left child
+		// left child
 			brother = parent->right;
 			nephew = brother->left;
 			if(nephew && nephew->color == RED){
@@ -165,9 +169,9 @@ void delete_fix(struct rbtree *tree, struct rbnode *node)
 					break;
 				}
 			}
-			// left child end
+		// left child end
 		} else {
-			// right child 
+		// right child 
 			brother = parent->left;
 			nephew = brother->left;
 			if(brother && brother->color == RED){
@@ -216,9 +220,12 @@ void delete_fix(struct rbtree *tree, struct rbnode *node)
 					break;
 				}
 			}
-			// right child end
+		// right child end
 		}
 	}
+
+	if(red_borrowed)
+		tree->depth--;
 
 	struct rbnode *child;
 	delete:
@@ -228,6 +235,8 @@ void delete_fix(struct rbtree *tree, struct rbnode *node)
 		flag ? (node->parent->left = child) : (node->parent->right = child);
 	} else {
 		tree->root = child;
+		if(!tree->root)
+			tree->depth--;
 	}
 	if(child)
 		child->parent = node->parent;

@@ -40,7 +40,7 @@ int main(int argc, char const *argv[])
 		printf("\ninsert %d into the tree\n", random_ints[i]);
 		print_rbtree(&tree);
 		if (check_rbtree(&tree)) {
-			printf("rbtree valid: √√√\n");
+			printf("rbtree size:%d, depth:%d, valid: √√√\n", tree.size, tree.depth);
 		} else {
 			printf("rbtree valid: ✗✗✗\n");
 			exit(-1);
@@ -57,7 +57,7 @@ int main(int argc, char const *argv[])
 		printf("delete %d in the tree\n", random_ints[i]);
 		print_rbtree(&tree);
 		if (check_rbtree(&tree)) {
-			printf("rbtree valid: √√√\n");
+			printf("rbtree size:%d, depth:%d, valid: √√√\n", tree.size, tree.depth);
 		} else {
 			printf("rbtree valid: ✗✗✗\n");
 			exit(-1);
