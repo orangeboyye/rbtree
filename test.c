@@ -64,40 +64,6 @@ int main(int argc, char const *argv[])
 		}
 	}
 
-		// delete(&tree, 6);
-		// printf("\n");
-		// printf("delete %d in the tree\n", 6);
-		// print_rbtree(&tree);
-		// if (check_rbtree(&tree)) {
-		// 	printf("rbtree valid: √√√\n");
-		// } else {
-		// 	printf("rbtree valid: ✗✗✗\n");
-		// 	exit(-1);
-		// }
-
-		// delete(&tree, 4);
-		// printf("\n");
-		// printf("delete %d in the tree\n", 4);
-		// print_rbtree(&tree);
-		// if (check_rbtree(&tree)) {
-		// 	printf("rbtree valid: √√√\n");
-		// } else {
-		// 	printf("rbtree valid: ✗✗✗\n");
-		// 	exit(-1);
-		// }
-
-		// delete(&tree, 5);
-		// printf("\n");
-		// printf("delete %d in the tree\n", 5);
-		// print_rbtree(&tree);
-		// if (check_rbtree(&tree)) {
-		// 	printf("rbtree valid: √√√\n");
-		// } else {
-		// 	printf("rbtree valid: ✗✗✗\n");
-		// 	exit(-1);
-		// }
-
-
 	return 0;
 }
 

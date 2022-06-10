@@ -136,51 +136,88 @@ void delete_fix(struct rbtree *tree, struct rbnode *node)
 	while(self->parent){
 		parent = self->parent;
 		if(self == parent->left){
+			// left child
 			brother = parent->right;
 			nephew = brother->left;
 			if(nephew && nephew->color == RED){
 				nephew->color = BLACK;
 				rotate_right(tree, brother);
 				rotate_left(tree, parent);
-				// red_borrowed ? (red_borrowed = 0) : (self->color = RED);
 				self->color = RED;
 				if(red_borrowed){
-					self->color = BLACK;
 					red_borrowed = 0;
+					self->color = BLACK;
 				}
+				break;
 			} else {
-				// red_borrowed ? (red_borrowed = 0) : (self->color = RED);
-				self->color = RED;
-				if(red_borrowed){
+				int old_red_borrowed = red_borrowed;
+				red_borrowed = 0;
+				if(parent->color == BLACK)
+					red_borrowed = 1;
+				color_flip_down(parent);
+				if(old_red_borrowed)
 					self->color = BLACK;
-					red_borrowed = 0;
-				}
-				brother->color = RED;
-				parent->color == RED ? (parent->color = BLACK) : (red_borrowed = 1);
 				rotate_left(tree, parent);
-				self = brother;
+				if(red_borrowed){
+					self = brother;
+					continue;
+				} else {
+					break;
+				}
 			}
+			// left child end
 		} else {
-			int rotated = 0;
-			if(parent->left && parent->left->color == RED)
-				rotate_right(tree, parent), rotated = 1;
+			// right child 
 			brother = parent->left;
 			nephew = brother->left;
-			if(nephew && nephew->color == RED){
-				nephew->color = BLACK;
+			if(brother && brother->color == RED){
+				if(brother->right && brother->right->left && brother->right->left->color == RED){
+					struct rbnode *n = brother->right->left;
+					rotate_right(tree, parent);
+					rotate_right(tree, parent);
+					n->color = BLACK;
+					self->color = RED;
+					if(red_borrowed){
+						red_borrowed = 0;
+						self->color = BLACK;
+					}
+					rotate_left(tree, brother);
+					break;
+				} else {
+					rotate_right(tree, parent);
+					color_flip_down(parent);
+					if(red_borrowed){
+						red_borrowed = 0;
+						self->color = BLACK;
+					}
+					break;
+				}
+			} else if(nephew && nephew->color == RED){
 				rotate_right(tree, parent);
-				red_borrowed ? (red_borrowed = 0) : (self->color = RED);
-				if(rotated)
-					rotate_left(tree, brother->parent);
+				nephew->color = BLACK;
+				self->color = RED;
+				if(red_borrowed){
+					red_borrowed = 0;
+					self->color = BLACK;
+				}
+				break;
 			} else {
-				red_borrowed ? (red_borrowed = 0) : (self->color = RED);
-				brother->color = RED;
-				parent->color == RED ? (parent->color = BLACK) : (red_borrowed = 1);
-				self = parent;
+				int old_red_borrowed = red_borrowed;
+				red_borrowed = 0;
+				if(parent->color == BLACK)
+					red_borrowed = 1;
+				color_flip_down(parent);
+				if(old_red_borrowed)
+					self->color = BLACK;
+				if(red_borrowed){
+					self = parent;
+					continue;
+				} else {
+					break;
+				}
 			}
+			// right child end
 		}
-		if(!red_borrowed)
-			break;
 	}
 
 	struct rbnode *child;
