@@ -17,45 +17,87 @@ int main(int argc, char const *argv[])
 	if (count < 1)
 		count = 1;
 
-	printf("create an random uniqe array\n");
+	printf("create a random uniqe array\n");
 	srand(time(NULL));
-	int arr[count], key, again;
-	for (int i = 0; i < count; ++i) {
+	int random_ints[count], key, again;
+	for (int i = 0; i < count; i++) {
 		key = rand()%count + 1, again = 0;
 		for (int j = 0; j < i; ++j) 
-			if (arr[j] == key && (again = 1)) 
+			if (random_ints[j] == key && (again = 1)) 
 				break;
-		again ? --i : (arr[i] = key);
+		again ? --i : (random_ints[i] = key);
 	}
-	for (int i = 0; i < count; ++i)
-		printf("%2d ", arr[i]);
+	// for (int i = 0; i < count; i++)
+	// 	random_ints[i] = i;
+	for (int i = 0; i < count; i++)
+		printf("%2d ", random_ints[i]);
 	printf("\n");
 
-	struct rbroot root = { NULL, 0, 0 };
-	for (int i = 0; i < count; ++i){
-		insert(&root, arr[i]);
-		printf("\ninsert %d into the tree\n", arr[i]);
-		print_rbtree(&root);
-		if (check_rbtree(&root)) {
-			printf("the tree is red blcak tree\n");
+	struct rbtree tree = { NULL, 0, 0 };
+	print_rbtree(&tree);
+	for (int i = 0; i < count; i++){
+		insert(&tree, random_ints[i]);
+		printf("\ninsert %d into the tree\n", random_ints[i]);
+		print_rbtree(&tree);
+		if (check_rbtree(&tree)) {
+			printf("rbtree valid: √√√\n");
 		} else {
-			printf("the tree is NOT red blcak tree!!!\n");
+			printf("rbtree valid: ✗✗✗\n");
 			exit(-1);
 		}
 	}
 
-	for (int i = 0; i < count; ++i){
-		delete(&root, arr[i]);
+	printf("-----------------------------------------------------------\n");
+	printf("***********************************************************\n");
+	printf("-----------------------------------------------------------\n");
+
+	for (int i = count-1; i >= 0; i--){
+		delete(&tree, random_ints[i]);
 		printf("\n");
-		printf("delete %d in the tree\n", arr[i]);
-		print_rbtree(&root);
-		if (check_rbtree(&root)) {
-			printf("the tree is red blcak tree\n");
+		printf("delete %d in the tree\n", random_ints[i]);
+		print_rbtree(&tree);
+		if (check_rbtree(&tree)) {
+			printf("rbtree valid: √√√\n");
 		} else {
-			printf("the tree is NOT red blcak tree!!!\n");
+			printf("rbtree valid: ✗✗✗\n");
 			exit(-1);
 		}
 	}
+
+		// delete(&tree, 6);
+		// printf("\n");
+		// printf("delete %d in the tree\n", 6);
+		// print_rbtree(&tree);
+		// if (check_rbtree(&tree)) {
+		// 	printf("rbtree valid: √√√\n");
+		// } else {
+		// 	printf("rbtree valid: ✗✗✗\n");
+		// 	exit(-1);
+		// }
+
+		// delete(&tree, 4);
+		// printf("\n");
+		// printf("delete %d in the tree\n", 4);
+		// print_rbtree(&tree);
+		// if (check_rbtree(&tree)) {
+		// 	printf("rbtree valid: √√√\n");
+		// } else {
+		// 	printf("rbtree valid: ✗✗✗\n");
+		// 	exit(-1);
+		// }
+
+		// delete(&tree, 5);
+		// printf("\n");
+		// printf("delete %d in the tree\n", 5);
+		// print_rbtree(&tree);
+		// if (check_rbtree(&tree)) {
+		// 	printf("rbtree valid: √√√\n");
+		// } else {
+		// 	printf("rbtree valid: ✗✗✗\n");
+		// 	exit(-1);
+		// }
+
+
 	return 0;
 }
 

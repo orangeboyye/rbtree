@@ -12,7 +12,7 @@ struct rbnode
 	struct rbnode *right;
 };
 
-struct rbroot
+struct rbtree
 {
 	struct rbnode *root;
 	int size;
@@ -20,10 +20,10 @@ struct rbroot
 };
 
 
-int insert(struct rbroot *root, int value);
+int insert(struct rbtree *tree, int value);
 
-int delete(struct rbroot *root, int value);
+int delete(struct rbtree *tree, int value);
 
-struct rbnode * find(struct rbroot *root, int value);
+struct rbnode * find(struct rbtree *tree, int value);
 
 #endif // RBTREE_H_
