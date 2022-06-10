@@ -192,13 +192,72 @@ void delete_fix(struct rbtree *tree, struct rbnode *node)
 	} else {
 		tree->root = child;
 	}
-
 	if(child)
 		child->parent = node->parent;
-
 	free(node);
-	return;
-	
+}
+
+void delete_fix_compact(struct rbtree *tree, struct rbnode *node)
+{
+	if(node->left && node->left->color == RED)
+		rotate_right(tree, node);
+	if(node->color == RED)
+		goto delete;
+
+	struct rbnode *x = node, *y, *z, *w;
+	int red_borrowed = 0;
+	while(x->parent){
+		y = x->parent;
+		if(x == y->left){
+			z = y->right;
+			w = z->left;
+			if(w && w->color == RED){
+				w->color = BLACK;
+				red_borrowed ? (red_borrowed = 0) : (x->color = RED);
+				rotate_right(tree, z);
+				rotate_left(tree, y);
+			} else {
+				red_borrowed ? (red_borrowed = 0) : (x->color = RED);
+				z->color = RED;
+				y->color == RED ? (y->color = BLACK) : (red_borrowed = 1);
+				rotate_left(tree, y);
+				x = z;
+			}
+		} else {
+			int rotated = 0;
+			if(y->left && y->left->color == RED)
+				rotate_right(tree, y), rotated = 1;
+			z = y->left;
+			w = z->left;
+			if(w && w->color == RED){
+				w->color = BLACK;
+				red_borrowed ? (red_borrowed = 0) : (x->color = RED);
+				rotate_right(tree, y);
+				if(rotated)
+					rotate_left(tree, z->parent);
+			} else {
+				red_borrowed ? (red_borrowed = 0) : (x->color = RED);
+				z->color = RED;
+				y->color == RED ? (y->color = BLACK) : (red_borrowed = 1);
+				x = y;
+			}
+		}
+		if(!red_borrowed)
+			break;
+	}
+
+	struct rbnode *child;
+	delete:
+	child = node->left ? node->left : node->right;
+	if(node->parent){
+		int flag = node == node->parent->left;
+		flag ? (node->parent->left = child) : (node->parent->right = child);
+	} else {
+		tree->root = child;
+	}
+	if(child)
+		child->parent = node->parent;
+	free(node);
 }
 
 static void color_flip_up(struct rbnode *node)
